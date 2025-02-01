@@ -1,24 +1,36 @@
-<div class=" flex items-center justify-center gap-2">
-    <div class="flex items-center justify-center">
-       <mat-icon>person</mat-icon>
-     
-    </div>
-        <p class="text-xl font-semibold my-4">Add User</p>
-</div>
-<form class="flex flex-col gap-4 px-[5rem] items-center">
-    <div class="flex gap-4 w-full" >
 
+<div class="flex items-center justify-center gap-2">
+    <div class="flex items-center justify-center">
+        <mat-icon>person</mat-icon>
+    </div>
+    <p class="text-xl font-semibold my-4">Add User</p>
+</div>
+<form (ngSubmit)="onSubmit()" class="flex flex-col gap-4 px-[5rem] items-center">
+    <div class="flex gap-4 w-full">
         <div class="flex flex-col w-full">
-            <label>User Name:</label>
-            <input type="text" class="border border-gray-300 p-2 rounded-lg" placeholder="Ex. Will Byers">
+            <label class="mb-3 font-semibold">User Name:</label>
+            <input type="text" class="border border-gray-300 p-2 rounded-lg" [(ngModel)]="userName" placeholder="Ex. Will Byers" name="userName">
         </div>
         <div class="flex flex-col w-full">
-            <label>Workout Type:</label>
-            <input type="text" class="border border-gray-300 p-2 rounded-lg" placeholder="Ex. Cycling, Yoga ">
+            <label class="mb-3 font-semibold">Workout Type:</label>
+            <div class="relative">
+                <input type="text" class="border border-gray-300 p-2 rounded-lg cursor-pointer pr-10 w-full" [value]="workoutType.join(', ') || 'Select workout types'" readonly (click)="toggleDropdown()">
+                <div class="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center justify-center">
+                    <mat-icon class="cursor-pointer"  (click)="toggleDropdown()">arrow_drop_down</mat-icon>
+                </div>
+                <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white border border-gray-300 rounded-md shadow-lg mt-1 w-full">
+                    <div class="p-2">
+                        <label *ngFor="let option of workoutOptions" class="flex items-center">
+                            <input type="checkbox" [value]="option" (change)="onCheckboxChange($event)" class="mr-2">
+                            {{ option }}
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="flex flex-col w-full">
-            <label>Workout Minutes:</label>
-            <input type="text" class="border border-gray-300 p-2 rounded-lg" placeholder="Ex. 30, 40">
+            <label class="mb-3 font-semibold">Workout Minutes:</label>
+            <input type="text" class="border border-gray-300 p-2 rounded-lg" [(ngModel)]="workoutMinutes" placeholder="Ex. 30, 40" name="workoutMinutes">
         </div>
     </div>
     <div>

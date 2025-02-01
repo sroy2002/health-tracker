@@ -3,13 +3,10 @@
 
     <!-- Filter -->
     <div class="relative m-[2px] mb-3 float-right hidden sm:block">
-      <label for="inputFilter" class="sr-only">Filter</label>
-      <select id="inputFilter" class="block w-40 rounded-lg border  p-2 text-sm focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400">
-        <option value="1" selected>Last week</option>
-        <option value="2">Last month</option>
-        <option value="3">Yesterday</option>
-        <option value="4">Last 7 days</option>
-        <option value="5">Last 30 days</option>
+      <label for="filter">Filter by Workout Type:</label>
+      <select id="filter" [(ngModel)]="filter" class="border border-gray-300 p-2 rounded-lg">
+        <option value="">All</option>
+        <option *ngFor="let option of workoutOptions" [value]="option">{{ option }}</option>
       </select>
     </div>
   
@@ -35,38 +32,28 @@
       </thead>
   
       <!-- Table body -->
-      <tbody>
+      <!-- <tbody>
   
-        <tr class="border-b hover:bg-neutral-100 ">
+        <tr *ngFor="let user of userList" class="border-b hover:bg-neutral-100 ">
           <th scope="row" class="px-6 py-5">
-            Handbag
+            {{user.userName}}
           </th>
-          <td class="px-6 py-5">$129.99</td>
-          <td class="px-6 py-5">30</td>
-          <td class="px-6 py-5">In Stock</td>
-        </tr>
-  
-        <tr class="border-b hover:bg-neutral-100 ">
-          <th scope="row" class="px-6 py-5">
-            Shoes
-          </th>
-          <td class="px-6 py-5">$89.50</td>
-          <td class="px-6 py-5">25</td>
-          <td class="px-6 py-5">In Stock</td>
+          <td class="px-6 py-5">{{user.workoutType.join(', ')}}</td>
+          <td class="px-6 py-5">{{user.numberOfWorkouts}}</td>
+          <td class="px-6 py-5">{{user.workoutMinutes}}</td>
         </tr>
   
        
-        <tr class="border-b hover:bg-neutral-100 ">
-          <th scope="row" class="p-5">
-            Soap Set
-          </th>
-          <td class="p-5">$24.95</td>
-          <td class="p-5">50</td>
-          <td class="p-5">In Stock</td>
+  
+      </tbody> -->
+      <tbody>
+        <tr *ngFor="let user of filteredUsers" class="border-b hover:bg-neutral-100 ">
+          <td class="px-6 py-5">{{ user.userName }}</td>
+          <td class="px-6 py-5">{{ user.workoutType.join(', ') }}</td> <!-- Display selected workout types as a comma-separated string -->
+          <td class="px-6 py-5">{{ user.numberOfWorkouts }}</td>
+          <td class="px-6 py-5">{{ user.workoutMinutes }}</td> <!-- Display workout minutes as a comma-separated string -->
         </tr>
-  
       </tbody>
-  
     </table>
   
   </div>
