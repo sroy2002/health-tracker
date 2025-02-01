@@ -1,0 +1,72 @@
+<!-- Table responsive wrapper -->
+<div class="overflow-x-auto bg-white px-10">
+
+    <!-- Filter -->
+    <div class="relative m-[2px] mb-3 float-right hidden sm:block">
+      <label for="inputFilter" class="sr-only">Filter</label>
+      <select id="inputFilter" class="block w-40 rounded-lg border  p-2 text-sm focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400">
+        <option value="1" selected>Last week</option>
+        <option value="2">Last month</option>
+        <option value="3">Yesterday</option>
+        <option value="4">Last 7 days</option>
+        <option value="5">Last 30 days</option>
+      </select>
+    </div>
+  
+    <!-- Table -->
+    <table class="min-w-full text-center text-sm whitespace-nowrap">
+  
+      <!-- Table head -->
+      <thead class="uppercase tracking-wider border-b-2 ">
+        <tr>
+          <th scope="col" class="px-5 py-5">
+            Username
+          </th>
+          <th scope="col" class="px-5 py-5">
+            Workout Types
+          </th>
+          <th scope="col" class="px-5 py-5">
+            Number of Workouts
+          </th>
+          <th scope="col" class="px-5 py-5">
+            Workout Minutes
+          </th>
+        </tr>
+      </thead>
+  
+      <!-- Table body -->
+      <tbody>
+  
+        <tr class="border-b hover:bg-neutral-100 ">
+          <th scope="row" class="px-6 py-5">
+            Handbag
+          </th>
+          <td class="px-6 py-5">$129.99</td>
+          <td class="px-6 py-5">30</td>
+          <td class="px-6 py-5">In Stock</td>
+        </tr>
+  
+        <tr class="border-b hover:bg-neutral-100 ">
+          <th scope="row" class="px-6 py-5">
+            Shoes
+          </th>
+          <td class="px-6 py-5">$89.50</td>
+          <td class="px-6 py-5">25</td>
+          <td class="px-6 py-5">In Stock</td>
+        </tr>
+  
+       
+        <tr class="border-b hover:bg-neutral-100 ">
+          <th scope="row" class="p-5">
+            Soap Set
+          </th>
+          <td class="p-5">$24.95</td>
+          <td class="p-5">50</td>
+          <td class="p-5">In Stock</td>
+        </tr>
+  
+      </tbody>
+  
+    </table>
+  
+  </div>

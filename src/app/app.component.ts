@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
+import { HeaderComponent } from './header/header.component';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,HeaderComponent, MatIconModule],
   template: `
-    <h1>Welcome to {{title}}!</h1>
-
+   
+    <app-header/>
     <router-outlet />
   `,
   styles: [],
 })
 export class AppComponent {
-  title = 'my first ever Angular app healthTracker';
+    
 }
