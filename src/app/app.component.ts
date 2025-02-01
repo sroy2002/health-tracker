@@ -12,5 +12,5 @@ import { RouterOutlet } from '@angular/router';
   styles: [],
 })
 export class AppComponent {
-  title = 'healthTracker';
+  title = 'my first ever Angular app healthTracker';
 }
