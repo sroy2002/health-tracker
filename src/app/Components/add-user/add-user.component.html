@@ -14,8 +14,9 @@
         <div class="flex flex-col w-full">
             <label class="mb-3 font-semibold">Workout Type:</label>
             <div class="relative">
-                <input type="text" class="border border-gray-300 p-2 rounded-lg cursor-pointer pr-10 w-full" [value]="workoutType.join(', ') || 'Select workout types'" readonly (click)="toggleDropdown()">
+                <input type="text" class="text-sm border border-gray-300 p-2 rounded-lg cursor-pointer pr-10 w-full" [value]="workoutType.join(', ') || 'Select workout types'" readonly (click)="toggleDropdown()">
                 <div class="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center justify-center">
+                    <mat-icon class="cursor-pointer ml-2" *ngIf="workoutType.length > 0" (click)="clearWorkoutTypes()">close</mat-icon>
                     <mat-icon class="cursor-pointer"  (click)="toggleDropdown()">arrow_drop_down</mat-icon>
                 </div>
                 <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white border border-gray-300 rounded-md shadow-lg mt-1 w-full">

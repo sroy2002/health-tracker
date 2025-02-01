@@ -17,22 +17,34 @@ export class AddUserComponent {
   workoutOptions: string[] = ['Running', 'Cycling', 'Yoga', 'Swimming', 'Weightlifting'];
   isDropdownOpen: boolean = false;
 
+  checkboxStates: { [key: string]: boolean } = {};
+
   constructor(private userService: UserService) {}
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
+  
 
   onCheckboxChange(event: any) {
     const value = event.target.value;
     if (event.target.checked) {
       this.workoutType.push(value);
+      this.checkboxStates[value] = true;
     } else {
       const index = this.workoutType.indexOf(value);
       if (index > -1) {
         this.workoutType.splice(index, 1);
       }
+      this.checkboxStates[value] = false;
     }
+  }
+
+  clearWorkoutTypes() {
+    this.workoutType = [];
+    this.workoutOptions.forEach(option => {
+      this.checkboxStates[option] = false; 
+    });
   }
 
   onSubmit() {
