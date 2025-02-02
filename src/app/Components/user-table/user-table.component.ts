@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../user.service';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-user-table',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatIconModule],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.css',
 })
@@ -18,7 +19,7 @@ export class UserTableComponent implements OnInit {
     'Weightlifting',
   ];
   filter: string = '';
-
+  
   currentPage: number = 1;
   itemsPerPage: number = 5;
   totalItems: number = 0;
@@ -28,11 +29,18 @@ export class UserTableComponent implements OnInit {
   constructor(private userService: UserService) {}
   ngOnInit(): void {
     this.userService.userList$.subscribe((userList) => {
-      this.userList = userList;
+      this.userList = userList.map(user => ({
+        ...user,
+        totalWorkoutMinutes: this.calculateTotalWorkoutMinutes(user.workoutMinutes)
+      }));
       this.totalItems = this.userList.length;
     });
   }
 
+  // Method to calculate total workout minutes
+  private calculateTotalWorkoutMinutes(workoutMinutes: number[]): number {
+    return workoutMinutes.reduce((total, minutes) => total + minutes, 0);
+  }
 
   get filteredUsers() {
     let users = this.userList;

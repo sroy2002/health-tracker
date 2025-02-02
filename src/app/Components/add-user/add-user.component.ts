@@ -50,12 +50,11 @@ export class AddUserComponent {
   onSubmit() {
     if (this.userName && this.workoutType.length > 0 && this.workoutMinutes) {
       const workoutMinutesArray = this.workoutMinutes.split(',').map(min => parseInt(min.trim(), 10)); // Convert to numbers
-      const totalWorkoutMinutes = workoutMinutesArray.reduce((acc, curr) => acc + curr, 0); 
      
       const newUser  = {
         userName: this.userName,
         workoutType: this.workoutType,
-        workoutMinutes: totalWorkoutMinutes,
+        workoutMinutes: workoutMinutesArray,
         numberOfWorkouts: this.workoutType.length
       };
     
@@ -63,7 +62,7 @@ export class AddUserComponent {
       this.userName = '';
       this.workoutType = [];
       this.workoutMinutes = '';
-      this.isDropdownOpen = false; // Close dropdown after submission
+      this.isDropdownOpen = false; 
     }
   }
 }

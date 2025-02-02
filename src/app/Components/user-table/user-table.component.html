@@ -1,4 +1,12 @@
 <div class="overflow-x-auto bg-white px-10">
+  <div class="w-full">
+    <div class="flex items-center gap-3 px-10">
+      <div class="flex justify-center items-center">
+        <mat-icon>table_chart</mat-icon>
+      </div>
+      <span class="text-3xl font-semibold my-4">Users Table</span>
+    </div>
+  </div>
   <div class="flex items-center justify-between px-8">
     <!-- Search bar -->
     <div class="flex flex-col text-sm">
@@ -27,31 +35,32 @@
   </div>
 
   <!-- Table -->
-  <table class="min-w-full text-center text-sm whitespace-nowrap">
-    <thead class="uppercase tracking-wider border-b-2">
-      <tr>
-        <th scope="col" class="px-5 py-5">Username</th>
-        <th scope="col" class="px-5 py-5">Workout Types</th>
-        <th scope="col" class="px-5 py-5">Number of Workouts</th>
-        <th scope="col" class="px-5 py-5">Workout Minutes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="let user of filteredUsers"
-        class="border-b hover:bg-neutral-100"
-      >
-        <td class="px-6 py-5">{{ user.userName }}</td>
-        <td class="px-6 py-5">{{ user.workoutType.join(", ") }}</td>
-        <td class="px-6 py-5">{{ user.numberOfWorkouts }}</td>
-        <td class="px-6 py-5">{{ user.workoutMinutes }}</td>
-      </tr>
-    </tbody>
-  </table>
-
+  <div class="p-4">
+    <table class="min-w-full text-center text-sm whitespace-nowrap shadow-md border">
+      <thead class="uppercase tracking-wider border-b-2">
+        <tr>
+          <th scope="col" class="px-5 py-5">Username</th>
+          <th scope="col" class="px-5 py-5">Workout Types</th>
+          <th scope="col" class="px-5 py-5">Number of Workouts</th>
+          <th scope="col" class="px-5 py-5">Total Workout Minutes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let user of filteredUsers"
+          class="border-b hover:bg-neutral-100"
+        >
+          <td class="px-6 py-5">{{ user.userName }}</td>
+          <td class="px-6 py-5">{{ user.workoutType.join(", ") }}</td>
+          <td class="px-6 py-5">{{ user.numberOfWorkouts }}</td>
+          <td class="px-6 py-5">{{ user.totalWorkoutMinutes }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <!-- pagination -->
 
-  <div class="flex items-center justify-between mt-4">
+  <div class="flex items-center justify-center  gap-4 mt-4">
     <div class="flex items-center justify-center text-sm">
       <button
         (click)="changePage(currentPage - 1)"

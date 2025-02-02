@@ -12,19 +12,19 @@ export class UserService {
     {
       userName: 'John Doe',
       workoutType: ['Running', 'Cycling'],
-      workoutMinutes: 60,
+      workoutMinutes: [60,20],
       numberOfWorkouts: 2
     },
     {
       userName: 'Jane Smith',
       workoutType: ['Yoga', 'Swimming'],
-      workoutMinutes: 90,
+      workoutMinutes: [20,90],
       numberOfWorkouts: 2
     },
     {
       userName: 'Bob Johnson',
       workoutType: ['Weightlifting'],
-      workoutMinutes: 45,
+      workoutMinutes: [45,30],
       numberOfWorkouts: 1
     }
   ]);
@@ -33,8 +33,13 @@ export class UserService {
   constructor() { }
 
   //method to add new user
-  addUser(newUser:any){
-    const currentUserList =  this.userListSource.value;
-    this.userListSource.next([...currentUserList,newUser]);
+  addUser (newUser :any) {
+    const currentUserList = this.userListSource.value;
+    newUser .totalWorkoutMinutes = this.calculateTotalWorkoutMinutes(newUser.workoutMinutes);
+    this.userListSource.next([...currentUserList, newUser ]);
+  }
+
+  private calculateTotalWorkoutMinutes(workoutMinutes: number[]): number {
+    return workoutMinutes.reduce((total, minutes) => total + minutes, 0);
   }
 }
