@@ -36,5 +36,9 @@
         </tr>
       </tbody>
     </table>
-  
+    <div class="flex items-center justify-center mt-4 text-sm">
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1" class="border rounded-full py-2 px-4 disabled:bg-gray-100 disabled:text-gray-500">Previous</button>
+      <span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" class="border rounded-full py-2 px-4 disabled:bg-gray-100 disabled:text-gray-500">Next</button>
+    </div>
   </div>
