@@ -1,44 +1,85 @@
 <div class="overflow-x-auto bg-white px-10">
-
+  <div class="flex items-center justify-between px-8">
+    <!-- Search bar -->
+    <div class="flex flex-col text-sm">
+      <label class="mb-2">Search by name:</label>
+      <input
+        type="text"
+        class="border py-2 px-4 rounded-lg"
+        [(ngModel)]="searchTerm"
+        placeholder="Search..."
+      />
+    </div>
     <!-- Filter -->
-    <div class="relative m-[2px] mb-3 float-right hidden sm:block">
-      <label for="filter">Filter by Workout Type:</label>
-      <select id="filter" [(ngModel)]="filter" class="border border-gray-300 p-2 rounded-lg">
+    <div class="relative m-[2px] mb-3 float-right text-sm flex flex-col">
+      <label for="filter" class="mb-2">Filter by Workout Type:</label>
+      <select
+        id="filter"
+        [(ngModel)]="filter"
+        class="border border-gray-300 p-2 rounded-lg"
+      >
         <option value="">All</option>
-        <option *ngFor="let option of workoutOptions" [value]="option">{{ option }}</option>
+        <option *ngFor="let option of workoutOptions" [value]="option">
+          {{ option }}
+        </option>
       </select>
     </div>
-  
-    <!-- Table -->
-    <table class="min-w-full text-center text-sm whitespace-nowrap">
-      <thead class="uppercase tracking-wider border-b-2 ">
-        <tr>
-          <th scope="col" class="px-5 py-5">
-            Username
-          </th>
-          <th scope="col" class="px-5 py-5">
-            Workout Types
-          </th>
-          <th scope="col" class="px-5 py-5">
-            Number of Workouts
-          </th>
-          <th scope="col" class="px-5 py-5">
-            Workout Minutes
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of filteredUsers" class="border-b hover:bg-neutral-100 ">
-          <td class="px-6 py-5">{{ user.userName }}</td>
-          <td class="px-6 py-5">{{ user.workoutType.join(', ') }}</td> 
-          <td class="px-6 py-5">{{ user.numberOfWorkouts }}</td>
-          <td class="px-6 py-5">{{ user.workoutMinutes }}</td> 
-        </tr>
-      </tbody>
-    </table>
-    <div class="flex items-center justify-center mt-4 text-sm">
-      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1" class="border rounded-full py-2 px-4 disabled:bg-gray-100 disabled:text-gray-500">Previous</button>
+  </div>
+
+  <!-- Table -->
+  <table class="min-w-full text-center text-sm whitespace-nowrap">
+    <thead class="uppercase tracking-wider border-b-2">
+      <tr>
+        <th scope="col" class="px-5 py-5">Username</th>
+        <th scope="col" class="px-5 py-5">Workout Types</th>
+        <th scope="col" class="px-5 py-5">Number of Workouts</th>
+        <th scope="col" class="px-5 py-5">Workout Minutes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let user of filteredUsers"
+        class="border-b hover:bg-neutral-100"
+      >
+        <td class="px-6 py-5">{{ user.userName }}</td>
+        <td class="px-6 py-5">{{ user.workoutType.join(", ") }}</td>
+        <td class="px-6 py-5">{{ user.numberOfWorkouts }}</td>
+        <td class="px-6 py-5">{{ user.workoutMinutes }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- pagination -->
+
+  <div class="flex items-center justify-between mt-4">
+    <div class="flex items-center justify-center text-sm">
+      <button
+        (click)="changePage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+        class="cursor-pointer border rounded-full py-2 px-4 disabled:bg-gray-100 disabled:text-gray-500"
+      >
+        Previous
+      </button>
       <span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
-      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" class="border rounded-full py-2 px-4 disabled:bg-gray-100 disabled:text-gray-500">Next</button>
+      <button
+        (click)="changePage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+        class="cursor-pointer border rounded-full py-2 px-4 disabled:bg-gray-100 disabled:text-gray-500"
+      >
+        Next
+      </button>
+    </div>
+    <div class="relative m-[2px] float-right sm:block flex items-center">
+      <label for="itemsPerPage" class="mr-2">Items per Page:</label>
+      <select
+        id="itemsPerPage"
+        (change)="changeItemsPerPage($event)"
+        class="border border-gray-300 py-2 px-4 rounded-lg"
+      >
+        <option *ngFor="let option of itemsPerPageOptions" [value]="option">
+          {{ option }}
+        </option>
+      </select>
     </div>
   </div>
+</div>
